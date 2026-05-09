@@ -10,7 +10,7 @@
 # =============================================================================
 
 # Stage 1: Download and verify
-FROM alpine:3.21 AS downloader
+FROM alpine:3.23 AS downloader
 
 ARG VAULT_VERSION=1.19.0
 ARG TARGETOS=linux
@@ -35,7 +35,7 @@ RUN cd /tmp && \
     unzip -d /output vault_${VAULT_VERSION}_${TARGETOS}_${TARGETARCH}.zip
 
 # Stage 2: Runtime
-FROM alpine:3.21
+FROM alpine:3.23
 
 RUN apk add --no-cache ca-certificates tzdata su-exec dumb-init && \
     addgroup -g 10001 -S vault && \
